@@ -110,7 +110,7 @@ class Url(OutputType):
 			techs.append(self.webserver)
 		if self.title and "/" in self.title:
 			techs.append(self.title)
-		for tech in self.tech + [self.webserver]:
+		for tech in techs:
 			if not tech:
 				continue
 			normalized = tech.replace('_', ' ').replace('/', ' ').replace('(', ' ').replace(')', ' ').replace(':', ' ')
