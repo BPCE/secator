@@ -105,7 +105,14 @@ class Url(OutputType):
 		return self.url
 
 	def get_techs(self):
-		for tech in self.tech:
+		techs = self.tech
+		if self.webserver and '/' in self.webserver:
+			techs.append(self.webserver)
+		if self.title and "/" in self.title:
+			techs.append(self.title)
+		for tech in self.tech + [self.webserver]:
+			if not tech:
+				continue
 			normalized = tech.replace('_', ' ').replace('/', ' ').replace('(', ' ').replace(')', ' ').replace(':', ' ')
 			product, version = extract_software_and_version(normalized)
 			product = product or tech
